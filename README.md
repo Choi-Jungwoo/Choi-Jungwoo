@@ -33,6 +33,25 @@
 
 </div>
 
+## 💱 Crypto Exchanges
+
+<div align="center">
+
+*Building low-latency trading & arbitrage infrastructure across major exchanges*
+
+<a href="https://www.coinbase.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/coinbase.png" alt="Coinbase" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.binance.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/binance.jpg" alt="Binance" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.kraken.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/kraken.jpg" alt="Kraken" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.okx.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/okx.png" alt="OKX" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.bitget.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/bitget.jpg" alt="Bitget" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.gate.io"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/gate.png" alt="Gate.io" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.bybit.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/bybit.png" alt="Bybit" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.kucoin.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/kucoin.png" alt="KuCoin" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.upbit.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/upbit.png" alt="Upbit" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.htx.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/htx.png" alt="HTX" /></a>
+
+</div>
+
 ## 🚀 Featured Projects
 
 > 🔒 Most of my production work lives in private repositories — quant trading infrastructure, game servers & internal tooling.
