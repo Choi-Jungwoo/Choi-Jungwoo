@@ -1,15 +1,15 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Ex-NetEase%20Pipeline%20TD%20%C2%B7%20Quant%20Systems%20Engineer&descAlignY=60&descSize=18&descColor=e0e6ff" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=%F0%9F%8E%AC%20VFX%20Pipeline%20TD%20%C2%B7%20%F0%9F%93%88%20Quant%20Trading%20%C2%B7%20%F0%9F%A6%80%20Rust%20Craftsman%20%C2%B7%20%F0%9F%8E%AE%20Game%20Dev%20%C2%B7%20%F0%9F%94%90%20Security%20Research&descAlignY=60&descSize=18&descColor=e0e6ff" />
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Ex-NetEase+Pipeline+TD+%F0%9F%8E%AC;Building+quant+trading+systems+%40+QuantPivot+%F0%9F%93%88;Rust+%C2%B7+C%23+%C2%B7+Go+%C2%B7+TypeScript+%C2%B7+Python;From+Maya+plugins+to+market+arbitrage;Unreal+%C2%B7+Unity+%C2%B7+Minecraft+modding" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Ex-NetEase+Pipeline+TD+%F0%9F%8E%AC;Building+quant+trading+systems+%F0%9F%93%88;Rust+%C2%B7+C%23+%C2%B7+Go+%C2%B7+TypeScript+%C2%B7+Python;From+Maya+plugins+to+market+arbitrage;Unreal+%C2%B7+Unity+%C2%B7+Minecraft+modding" alt="Typing SVG" /></a>
 
 </div>
 
 ## 👨‍💻 About Me
 
 - 🎬 **Ex-NetEase Pipeline TD** — built VFX pipeline tooling & the **Rust × Autodesk Maya** ecosystem (bindgen, plugins, runtimes)
-- 📈 **Quant systems engineer** — building multi-market trading & arbitrage infrastructure at **[@QuantPivot](https://github.com/QuantPivot)**
+- 📈 **Quant systems engineer** — building multi-market trading & arbitrage infrastructure
 - 🦀 Polyglot engineer: **Rust · C#/.NET · Go · TypeScript · Python · C++**, from systems programming to full-stack products
 - ⛓️ **Blockchain & fintech** — crypto exchange & prediction-market integrations, delta-neutral / statistical arbitrage, MT5 & CTP connectivity
 - 🔐 **Security & reverse engineering** — antivirus tooling, native DLL interop, firmware tinkering
