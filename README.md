@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Rust%20Developer%20%C2%B7%20VFX%20%26%20Maya%20Tooling%20Engineer&descAlignY=60&descSize=18&descColor=e0e6ff" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Rust%20Developer%20%C2%B7%20VFX%20%C2%B7%20Maya%20Tooling%20Engineer&descAlignY=60&descSize=18&descColor=e0e6ff" />
 
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Writing+Maya+plugins+in+Rust+%F0%9F%A6%80;Systems+programming+%C2%B7+Multi-threaded+everything;From+VFX+pipelines+to+embedded+Rust;Fearless+concurrency%2C+zero+cost+abstractions" alt="Typing SVG" /></a>
 
