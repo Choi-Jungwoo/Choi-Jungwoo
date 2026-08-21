@@ -25,7 +25,7 @@
 
 **Frameworks & Engines**
 
-[![Frameworks](https://skillicons.dev/icons?i=dotnet,nextjs,react,blazor,unity,unrealengine,nodejs&theme=dark)](https://skillicons.dev)
+[![Frameworks](https://skillicons.dev/icons?i=dotnet,nextjs,react,unity,unrealengine,nodejs&theme=dark)](https://skillicons.dev)
 
 **Infrastructure & Tools**
 
