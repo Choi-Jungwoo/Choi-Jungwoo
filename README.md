@@ -1,27 +1,41 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Rust%20Developer%20%C2%B7%20VFX%20%C2%B7%20Maya%20Tooling%20Engineer&descAlignY=60&descSize=18&descColor=e0e6ff" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Ex-NetEase%20Pipeline%20TD%20%C2%B7%20Quant%20Systems%20Engineer&descAlignY=60&descSize=18&descColor=e0e6ff" />
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Writing+Maya+plugins+in+Rust+%F0%9F%A6%80;Systems+programming+%C2%B7+Multi-threaded+everything;From+VFX+pipelines+to+embedded+Rust;Fearless+concurrency%2C+zero+cost+abstractions" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Ex-NetEase+Pipeline+TD+%F0%9F%8E%AC;Building+quant+trading+systems+%40+QuantPivot+%F0%9F%93%88;Rust+%C2%B7+C%23+%C2%B7+Go+%C2%B7+TypeScript+%C2%B7+Python;From+Maya+plugins+to+market+arbitrage;Unreal+%C2%B7+Unity+%C2%B7+Minecraft+modding" alt="Typing SVG" /></a>
 
 </div>
 
 ## 👨‍💻 About Me
 
-- 🦀 **Rust** developer with a passion for systems programming
-- 🎬 Building **Autodesk Maya tooling in Rust** — bindgen, runtimes & plugins for VFX pipelines
-- ⚡ Interested in **multi-threading**, performance engineering and embedded development
-- 🌍 Coding on GitHub since **2017**
+- 🎬 **Ex-NetEase Pipeline TD** — built VFX pipeline tooling & the **Rust × Autodesk Maya** ecosystem (bindgen, plugins, runtimes)
+- 📈 **Quant systems engineer** — building multi-market trading & arbitrage infrastructure at **[@QuantPivot](https://github.com/QuantPivot)**
+- 🦀 Polyglot engineer: **Rust · C#/.NET · Go · TypeScript · Python · C++**, from systems programming to full-stack products
+- ⛓️ **Blockchain & fintech** — crypto exchange & prediction-market integrations, delta-neutral / statistical arbitrage, MT5 & CTP connectivity
+- 🔐 **Security & reverse engineering** — antivirus tooling, native DLL interop, firmware tinkering
+- 🎮 **Game dev** — Unreal Engine source licensee, Unity multiplayer games, Minecraft server ecosystems
 
 ## 🛠️ Tech Stack
 
 <div align="center">
 
-[![My Skills](https://skillicons.dev/icons?i=rust,cpp,py,java,cmake,bash,linux,docker,git,githubactions,arduino,neovim&theme=dark)](https://skillicons.dev)
+**Languages**
+
+[![Languages](https://skillicons.dev/icons?i=rust,cs,go,ts,py,cpp,cmake&theme=dark)](https://skillicons.dev)
+
+**Frameworks & Engines**
+
+[![Frameworks](https://skillicons.dev/icons?i=dotnet,nextjs,react,blazor,unity,unrealengine,nodejs&theme=dark)](https://skillicons.dev)
+
+**Infrastructure & Tools**
+
+[![Tools](https://skillicons.dev/icons?i=redis,docker,linux,git,githubactions,arduino,neovim,bash&theme=dark)](https://skillicons.dev)
 
 </div>
 
 ## 🚀 Featured Projects
+
+> 🔒 Most of my production work lives in private repositories — quant trading infrastructure, game servers & internal tooling.
 
 | Project | Description |
 | :--- | :--- |
