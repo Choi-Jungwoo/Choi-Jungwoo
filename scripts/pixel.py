@@ -4,6 +4,7 @@ Usage: uv run scripts/pixel.py   (stdlib only; exchange sprites need ffmpeg)
 Everything is drawn from bitmaps, so no fonts load inside the SVGs.
 """
 
+import math
 import subprocess
 from pathlib import Path
 
@@ -12,14 +13,17 @@ OUT = ROOT / "assets" / "pixel"
 
 W = 840   # desktop width, ~1:1 with GitHub's README column
 NW = 400  # narrow variants, swapped in below 600px via <picture>
-BG = "#040f0f"
-LINE = "#1b4d3e"
-DIM = "#4d8f75"
-TEXT = "#8fe3b8"
-BRIGHT = "#d6ffe9"
-GREEN = "#0cf574"
-CYAN = "#2fb7e8"
-AMBER = "#f5b700"
+# Omarchy "Quattro" sunset palette
+BG = "#150a17"
+PANEL = "#1e1020"
+LINE = "#4a2045"
+DIM = "#a87896"
+TEXT = "#f2d8c9"
+BRIGHT = "#fff1e0"
+PINK = "#e55273"
+ORANGE = "#eaad73"
+SUN = "#f2e79c"
+MAGENTA = "#c03773"
 
 # 5x7 cells, 8th row for descenders. Unlisted rows are blank.
 FONT = {
@@ -197,18 +201,22 @@ def bitmap(rows, colors, u, x=0, y=0, outline=None):
 
 # ---------------------------------------------------------------- header
 
+# Content is visible by default; animations only hide it during the intro.
+# A browser that drops an animation (SVG-in-<img> may skip frames while
+# loading) then shows the finished screen instead of missing lines.
 HEADER_CSS = """
-.a{opacity:0;animation:on 1ms steps(1) forwards}
-.m{opacity:0;animation:hold .12s steps(1)}
-.wipe{animation:wipe .84s steps(12,end) .3s forwards}
+.a{animation:hide 1s}
+.count{transform:translateY(-176px);animation:count 1.1s steps(8,end)}
+.wipe{transform:translateX(SHIFTpx);animation:wipe 1s steps(12,end)}
 .blink{animation:blink 1.06s steps(1) infinite}
+.star{animation:blink 2.4s steps(1) infinite}
 .roll{animation:roll 7s linear infinite}
-@keyframes on{to{opacity:1}}
-@keyframes hold{from,to{opacity:1}}
-@keyframes wipe{to{transform:translateX(SHIFTpx)}}
+@keyframes hide{from,to{opacity:0}}
+@keyframes count{from{transform:translateY(0)}to{transform:translateY(-176px)}}
+@keyframes wipe{from{transform:translateX(0)}to{transform:translateX(SHIFTpx)}}
 @keyframes blink{50%{opacity:0}}
 @keyframes roll{from{transform:translateY(-120px)}to{transform:translateY(ROLLpx)}}
-@media (prefers-reduced-motion:reduce){.a{animation:none;opacity:1}.m,.wipe,.roll{animation:none;display:none}.blink{animation:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.roll{display:none}}
 """
 
 # (desktop label, narrow label)
@@ -221,32 +229,20 @@ ROLES = [
     ("Game dev: Unreal / Unity / Minecraft", "Game dev"),
 ]
 
-
-def chip(x, y, p=4):
-    """CPU-package emblem with a 'JW' die marking."""
-    n = 22
-    g = [["." for _ in range(n)] for _ in range(n)]
-    for i in range(3, 19):
-        for j in range(3, 19):
-            g[i][j] = "b" if i in (3, 18) or j in (3, 18) else "f"
-    for k in range(5, 18, 3):
-        for t in range(3):
-            g[t][k] = g[n - 1 - t][k] = g[k][t] = g[k][n - 1 - t] = "p"
-    g[5][5] = "b"  # pin-1 marker
-    for ci, ch in enumerate("JW"):
-        for ry, row in enumerate(FONT[ch]):
-            for rx, bit in enumerate(row):
-                if bit == "1":
-                    g[7 + ry][6 + ci * 6 + rx] = "t"
-    rows = ["".join(r) for r in g]
-    return bitmap(rows, {"p": DIM, "b": GREEN, "f": "#0a2a22", "t": GREEN}, p, x, y)
+# Omarchy "Quattro" sunset, sampled from the wallpaper
+SKY = ["#150a17", "#2e1432", "#4d1d4b", "#6c265c", "#8c2f68",
+       "#a8386d", "#c04270", "#d95271", "#e8736c"]
+SUNC = ["#f2e79c", "#f0d488", "#eebf7c", "#eaad73", "#e9956c", "#e7806a"]
+NAMEC = ["#fff6d8", "#f8eba8", "#f2e79c", "#f0d488", "#eebf7c", "#eaad73", "#e9956c"]
 
 
-def led_text(s, x, y, p):
+def led_text(s, x, y, p, rows=range(8)):
     """Dot-matrix display text: one square per font cell, with a hairline gap."""
     rects = []
     for i, ch in enumerate(s):
         for ry, row in enumerate(FONT[ch]):
+            if ry not in rows:
+                continue
             for rx, bit in enumerate(row):
                 if bit == "1":
                     rects.append(f'<rect x="{x + (i * ADV + rx) * p}" y="{y + ry * p}" '
@@ -254,67 +250,133 @@ def led_text(s, x, y, p):
     return "".join(rects)
 
 
+def sky(w, horizon, p=4, top=60, x0=4, x1=None):
+    """Sky bands: a dark strip behind the BIOS text, then an even ramp to the horizon."""
+    x1 = w - 4 if x1 is None else x1
+    out = [f'<rect x="{x0}" y="4" width="{x1 - x0}" height="{top - 4}" fill="{SKY[0]}"/>']
+    ramp = SKY[1:]
+    step = (horizon - top) / len(ramp)
+    for i, c in enumerate(ramp):
+        y0 = top + round(i * step / p) * p
+        y1 = horizon if i == len(ramp) - 1 else top + round((i + 1) * step / p) * p
+        out.append(f'<rect x="{x0}" y="{y0}" width="{x1 - x0}" height="{y1 - y0}" fill="{c}"/>')
+    return "".join(out)
+
+
+def scene(w, horizon, sun_cx, sun_r, p=4):
+    """Pixel sunset: banded sky, striped sun, two ridges, lake glints."""
+    out = [sky(w, horizon, p)]
+    # sun: one rect per cell row, gaps widen toward the bottom
+    r = sun_r // p
+    cy0 = horizon - sun_r * 3 // 8
+    out.append(f'<circle cx="{sun_cx}" cy="{cy0}" r="{sun_r * 1.25:.0f}" fill="#e55273" opacity=".6" filter="url(#halo)"/>')
+    gaps, row, k = set(), -r // 5, 0
+    while row < r:
+        g = 1 + k // 2
+        gaps.update(range(row, row + g))
+        row += g + max(1, 3 - k // 2)
+        k += 1
+    for j in range(-r, r + 1):
+        yy = cy0 + j * p
+        if j in gaps or yy + p > horizon:
+            continue
+        half = int(math.sqrt(max(0, r * r + r - j * j)))
+        if half:
+            c = SUNC[min(len(SUNC) - 1, (j + r) * len(SUNC) // (2 * r + 1))]
+            out.append(f'<rect x="{sun_cx - half * p}" y="{yy}" width="{2 * half * p}" height="{p}" fill="{c}"/>')
+    # ridges: far one dips around the sun, near one frames the left edge
+    def ridge(fn, color, sink):
+        d = ""
+        for x in range(4, w - 4, p):
+            h = max(0, round(fn(x) / p)) * p
+            if h:
+                d += f"M{x} {horizon - h}h{p}v{h + sink}h-{p}z"
+        out.append(f'<path fill="{color}" d="{d}"/>')
+    ridge(lambda x: (18 + 10 * math.sin(x * .031 + 1) + 6 * math.sin(x * .083 + 2))
+          * min(1, .2 + abs(x - sun_cx) / (sun_r * 1.6)), "#7a2c63", 0)
+    ridge(lambda x: 48 * max(0, 1 - x / (w * .42)) ** .9 * (.85 + .15 * math.sin(x * .11))
+          + 30 * max(0, (x - w * .86) / (w * .14)), "#3a1836", 6)
+    # lake: dark water with sun glints shrinking toward the viewer
+    out.append(f'<rect x="4" y="{horizon}" width="{w - 8}" height="{7 * p}" fill="#1f0e20"/>')
+    for k, c in enumerate([SUNC[0], SUNC[2], SUNC[4], "#dc5771", "#a8386d", "#6c295a"]):
+        gw = int(sun_r * 1.5 * (1 - k / 7)) // p * p
+        out.append(f'<rect x="{sun_cx - gw // 2}" y="{horizon + 2 + k * p}" width="{gw}" height="{p // 2}" fill="{c}"/>')
+    return "".join(out)
+
+
 def header(narrow=False):
     w, L, lh = (NW, 16, 22) if narrow else (W, 28, 22)
     name, p = "JUNGWOO CHOI", 5 if narrow else 8
-    H = 530 if narrow else 560
-    shift = 12 * ADV * p
+    horizon, sun_cx, sun_r = (190, 300, 52) if narrow else (212, 700, 84)
+    H = 592 if narrow else 596
+    shift = 12 * ADV * p + 16  # wipe travel: clear the whole name box
     s = Svg(w, H, "Choi Jungwoo — boot screen",
             HEADER_CSS.replace("SHIFT", str(shift)).replace("ROLL", str(H)))
     s.defs.append(
         '<pattern id="scan" width="3" height="3" patternUnits="userSpaceOnUse">'
-        '<rect y="2" width="3" height="1" fill="#000" opacity=".28"/></pattern>'
+        '<rect y="2" width="3" height="1" fill="#000" opacity=".22"/></pattern>'
         '<radialGradient id="vig" r=".75"><stop offset=".6" stop-opacity="0"/>'
-        '<stop offset="1" stop-opacity=".55"/></radialGradient>'
-        '<linearGradient id="bar" x2="0" y2="1"><stop offset="0" stop-color="#8fe3b8" stop-opacity="0"/>'
-        '<stop offset=".5" stop-color="#8fe3b8" stop-opacity=".05"/>'
-        '<stop offset="1" stop-color="#8fe3b8" stop-opacity="0"/></linearGradient>'
+        '<stop offset="1" stop-opacity=".35"/></radialGradient>'
+        '<linearGradient id="bar" x2="0" y2="1"><stop offset="0" stop-color="#e55273" stop-opacity="0"/>'
+        '<stop offset=".5" stop-color="#e55273" stop-opacity=".05"/>'
+        '<stop offset="1" stop-color="#e55273" stop-opacity="0"/></linearGradient>'
         '<filter id="glow" x="-5%" y="-20%" width="110%" height="140%">'
-        '<feGaussianBlur stdDeviation="5"/></filter>'
+        '<feGaussianBlur stdDeviation="6"/></filter>'
+        '<filter id="halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>'
     )
     s.frame()
+    s.add(scene(w, horizon, sun_cx, sun_r))
+    title = "CJW Modular BIOS v26.09" + ("" if narrow else ", An Open-Source Ally")
+    for i, (sx, sy) in enumerate([(.7, 20), (.8, 58), (.9, 30), (.62, 70), (.96, 76), (.75, 38)]):
+        if w * sx < L + width(title) + 24 and sy < 64:
+            continue  # keep stars clear of the title lines
+        s.add(f'<rect class="star" style="animation-delay:-{i * .7:.1f}s" x="{int(w * sx) // 2 * 2}" '
+              f'y="{sy}" width="2" height="2" fill="{TEXT}"/>')
 
-    s.text("CJW Modular BIOS v26.09" + ("" if narrow else ", An Open-Source Ally"), L, 28, fill=BRIGHT)
-    s.text("Copyright (C) 2026 Choi Jungwoo" if not narrow else "(C) 2026 Choi Jungwoo", L, 28 + lh, fill=DIM)
+    s.text(title, L, 24, fill=BRIGHT)
+    s.text("(C) 2026 Choi Jungwoo" if narrow else "Copyright (C) 2026 Choi Jungwoo", L, 24 + lh, fill=DIM)
 
-    # name: glow + dot matrix, revealed by a stepped wipe
-    ny = 88 if narrow else 98
-    s.add(f'<g fill="{GREEN}" opacity=".45" filter="url(#glow)">{led_text(name, L, ny, p)}</g>')
-    s.add(f'<g fill="#0a4a33">{led_text(name, L + p // 2, ny + p // 2, p)}</g>')
-    s.add(f'<g fill="{GREEN}">{led_text(name, L, ny, p)}</g>')
-    box = f'x="{L - 8}" y="{ny - 16}" width="{shift + 16}" height="{7 * p + 32}"'
+    # name: glow + shadow + sun-banded dot matrix, revealed by a stepped wipe
+    ny = 76 if narrow else 96
+    s.add(f'<g fill="{PINK}" opacity=".4" filter="url(#glow)">{led_text(name, L, ny, p)}</g>')
+    s.add(f'<g fill="{BG}">{led_text(name, L + p // 2, ny + p // 2, p)}</g>')
+    for ry, c in enumerate(NAMEC):
+        s.add(f'<g fill="{c}">{led_text(name, L, ny, p, rows=[ry])}</g>')
+    box = f'x="{L - 8}" y="{ny - 8}" width="{shift}" height="{7 * p + 16}"'
     s.defs.append(f'<clipPath id="nameclip"><rect {box}/></clipPath>')
-    s.add(f'<g clip-path="url(#nameclip)"><rect class="wipe" {box} fill="{BG}"/></g>')
-    cp = 2 if narrow else 4
-    s.add(chip(w - L - 22 * cp, 22, cp))
+    # the wipe cover is the same sky, so the name appears to be typed onto it
+    s.add(f'<g clip-path="url(#nameclip)"><g class="wipe">{sky(w, horizon, x0=L - 8, x1=L - 8 + shift)}</g></g>')
 
-    y = ny + 7 * p + 26
+    y = horizon + 7 * 4 + 18
     roles = (["VFX Pipeline TD / Quant Systems", "Rust / Game Dev / Security"] if narrow
              else ["VFX Pipeline TD / Quant Systems / Rust / Game Dev / Security"])
     motto = (["From Maya plugins", "to market arbitrage."] if narrow
              else ["From Maya plugins to market arbitrage."])
-    for line, fill in [(r, CYAN) for r in roles] + [(m, TEXT) for m in motto]:
+    for line, fill in [(r, PINK) for r in roles] + [(m, TEXT) for m in motto]:
         s.text(line, L, y, fill=fill)
         y += lh
-    y += 14
-    s.add(f'<path d="{"".join(f"M{x} {y}h4v2h-4z" for x in range(L, w - L, 8))}" fill="{LINE}"/>')
-    y += 16
+    y += 10
 
     key = 14 if narrow else 17  # column where values start
     if not narrow:
         s.text("Main Processor : Rust / C# / Go / TypeScript / Python / C++", L, y)
         y += lh
     s.text("Memory Test" + " " * (key - 13) + ":", L, y)
+    # counter: a strip of readings scrolled through a one-line window
+    s.defs.append(f'<clipPath id="memclip"><rect x="{L + key * 12}" y="{y - 2}" width="80" height="18"/></clipPath>')
+    strip = "".join(
+        f'<g fill="{BRIGHT}" transform="translate({L + key * 12} {y + i * 22}) scale(2)">'
+        + "".join(f'<use href="#{gid(c)}" x="{j * ADV}"/>' for j, c in enumerate(f"{kb:>5}K") if c != " ")
+        + "</g>"
+        for i, kb in enumerate(list(range(4096, 65536, 8192)) + [65536]))
+    s.used.update("0123456789K")
+    s.add(f'<g clip-path="url(#memclip)"><g class="count">{strip}</g></g>')
     t = 1.25
-    for kb in range(4096, 65536, 8192):
-        s.text(f"{kb:>5}K", L + key * 12, y, fill=BRIGHT, cls="m", style=f"animation-delay:{t:.2f}s")
-        t += 0.12
-    s.text("65536K", L + key * 12, y, fill=BRIGHT, cls="a", style=f"animation-delay:{t:.2f}s")
-    s.text("OK", L + (key + 7) * 12, y, fill=GREEN, cls="a", style=f"animation-delay:{t + .15:.2f}s")
+    s.text("OK", L + (key + 7) * 12, y, fill=SUN, cls="a", style=f"animation-duration:{t:.2f}s")
     y += lh + 8
 
-    t += 0.45
-    s.text("Detecting roles ...", L, y, fill=TEXT, cls="a", style=f"animation-delay:{t:.2f}s")
+    t += 0.4
+    s.text("Detecting roles ...", L, y, fill=TEXT, cls="a", style=f"animation-duration:{t:.2f}s")
     status_x = w - L - width("[ OK ]")
     col = (status_x - L) // 12 - 1
     for long, short in ROLES:
@@ -322,18 +384,18 @@ def header(narrow=False):
         t += 0.3
         line = f"{short} " if narrow else f"  {long} "
         line += "." * (col - len(line))
-        d = f"animation-delay:{t:.2f}s"
+        d = f"animation-duration:{t:.2f}s"
         s.text(line, L, y, fill=TEXT, cls="a", style=d)
         s.text("[    ]", status_x, y, fill=DIM, cls="a", style=d)
-        s.text("OK", status_x + 24, y, fill=GREEN, cls="a", style=f"animation-delay:{t + .2:.2f}s")
+        s.text("OK", status_x + 24, y, fill=SUN, cls="a", style=f"animation-duration:{t + .2:.2f}s")
     y += lh + 12
 
     t += 0.55
-    d = f"animation-delay:{t:.2f}s"
+    d = f"animation-duration:{t:.2f}s"
     prompt = "Boot OK. Scroll to SETUP" if narrow else "Boot complete. Scroll down to enter SETUP"
     s.text(prompt, L, y, fill=BRIGHT, cls="a", style=d)
     s.add(f'<g class="a" style="{d}"><rect class="blink" x="{L + width(prompt) + 10}" '
-          f'y="{y}" width="10" height="14" fill="{GREEN}"/></g>')
+          f'y="{y}" width="10" height="14" fill="{PINK}"/></g>')
     s.text("09/29/2026-CJW-00" if narrow else "09/29/2026-RUST-MAYA-QUANT-CJW-00", L, H - 30, fill=DIM)
 
     # CRT: rolling refresh bar, scanlines, vignette
@@ -350,7 +412,7 @@ def section(slug, label, note, narrow=False):
     s = Svg(w, 48, label)
     s.frame()
     cw = width(label) + 24
-    s.add(f'<rect x="16" y="12" width="{cw}" height="24" fill="{GREEN}"/>')
+    s.add(f'<rect x="16" y="12" width="{cw}" height="24" fill="{PINK}"/>')
     s.text(label, 28, 17, fill=BG)
     nx = w - 28 - (0 if narrow else width(note))
     if not narrow:
@@ -407,7 +469,7 @@ def stack(narrow=False):
     y = 42
     for key, items in lines:
         if key:
-            s.text(f"{key:<11}:" if not narrow else key, x0, y, fill=CYAN)
+            s.text(f"{key:<11}:" if not narrow else key, x0, y, fill=ORANGE)
         x = vx
         for i, item in enumerate(items or []):
             if i:
@@ -467,7 +529,7 @@ def exchanges(narrow=False):
         x = x0 + (i % cols) * (tw + gap)
         y = top + (i // cols) * (th + gap)
         s.add(f'<path d="{notch(tw - 2, th - 2, 2)}" transform="translate({x + 1} {y + 1})" '
-              f'fill="#061816" stroke="{LINE}" stroke-width="2"/>')
+              f'fill="{PANEL}" stroke="{LINE}" stroke-width="2"/>')
         rows, colors = sprite(next((ROOT / "assets" / "exchanges").glob(f"{key}.*")))
         name = EXCHANGE_NAMES.get(key, key.capitalize())
         if narrow:
@@ -478,7 +540,7 @@ def exchanges(narrow=False):
             s.center(name, y + 72, fill=TEXT, x0=x, x1=x + tw)
         dur = 0.7 + (i * 0.37) % 1.1
         s.add(f'<rect class="led" style="animation-duration:{dur:.2f}s;animation-delay:{i * .13:.2f}s" '
-              f'x="{x + tw - 14}" y="{y + 8}" width="6" height="6" fill="{GREEN}"/>')
+              f'x="{x + tw - 14}" y="{y + 8}" width="6" height="6" fill="{PINK}"/>')
     s.save("exchanges-narrow.svg" if narrow else "exchanges.svg")
 
 
@@ -490,7 +552,7 @@ def footer(narrow=False):
     s.frame()
     y = 36
     for line in lines:
-        s.center(line, y, u=3, fill=AMBER)
+        s.center(line, y, u=3, fill=ORANGE)
         y += 30
     s.center("CJW-BIOS v26.09 · session end", y + 20, fill=DIM)
     s.save("footer-narrow.svg" if narrow else "footer.svg")
@@ -507,7 +569,7 @@ ICONS = {
                  "#++++++++#",
                  "##########",
                  "#.##.##.##",
-                 "##########"], {"#": GREEN, "+": CYAN}),
+                 "##########"], {"#": PINK, "+": ORANGE}),
     "candles": (["..#.......",
                  "..#....#..",
                  ".###...#..",
@@ -517,7 +579,7 @@ ICONS = {
                  "..#...+++.",
                  "..#...+++.",
                  ".......#..",
-                 ".......#.."], {"#": GREEN, "+": AMBER}),
+                 ".......#.."], {"#": PINK, "+": SUN}),
     "crab": (["##......##",
               "#.#....#.#",
               ".##....##.",
@@ -526,7 +588,7 @@ ICONS = {
               "##+####+##",
               ".########.",
               ".#.#..#.#.",
-              "#..#..#..#"], {"#": AMBER, "+": BG}),
+              "#..#..#..#"], {"#": ORANGE, "+": BG}),
     "chain": ([".####.....",
                "#....#....",
                "#....####.",
@@ -534,7 +596,7 @@ ICONS = {
                "#...##...#",
                ".####....#",
                "....#....#",
-               ".....####."], {"#": GREEN}),
+               ".....####."], {"#": PINK}),
     "lock": (["...####...",
               "..#....#..",
               "..#....#..",
@@ -543,14 +605,14 @@ ICONS = {
               "####..####",
               "####..####",
               "##########",
-              "##########"], {"#": GREEN}),
+              "##########"], {"#": PINK}),
     "gamepad": ([".########.",
                  "###+######",
                  "##+++###+#",
                  "###+###+##",
                  "##########",
                  "####..####",
-                 ".##....##."], {"#": GREEN, "+": AMBER}),
+                 ".##....##."], {"#": PINK, "+": SUN}),
     "cube": (["....++....",
               "..++++++..",
               "++++++++++",
@@ -559,7 +621,7 @@ ICONS = {
               "#####=====",
               "#####=====",
               "..###===..",
-              "....#=...."], {"+": BRIGHT, "#": GREEN, "=": "#0a8f4a"}),
+              "....#=...."], {"+": SUN, "#": PINK, "=": MAGENTA}),
     "puzzle": (["...##.....",
                 "..####....",
                 "########..",
@@ -569,7 +631,7 @@ ICONS = {
                 "..######..",
                 "..######..",
                 "########..",
-                "########.."], {"#": GREEN}),
+                "########.."], {"#": PINK}),
     "download": (["...####...",
                   "...####...",
                   "...####...",
@@ -579,7 +641,7 @@ ICONS = {
                   "...####...",
                   "....##....",
                   "..........",
-                  "##########"], {"#": GREEN}),
+                  "##########"], {"#": PINK}),
     "flame": (["....#.....",
                "....##....",
                "...###..#.",
@@ -589,7 +651,7 @@ ICONS = {
                "###+++###.",
                "##+++++##.",
                "##+++++##.",
-               ".#######.."], {"#": AMBER, "+": "#fff3b0"}),
+               ".#######.."], {"#": ORANGE, "+": SUN}),
 }
 
 

@@ -38,13 +38,13 @@
 
 <div align="center">
 
-<img width="100%" src="profile-summary-card-output/blue_green/0-profile-details.svg" alt="Profile details" />
+<img width="100%" src="profile-summary-card-output/synthwave/0-profile-details.svg" alt="Profile details" />
 
-<img width="32.5%" src="profile-summary-card-output/blue_green/3-stats.svg" alt="Stats" />
-<img width="32.5%" src="profile-summary-card-output/blue_green/1-repos-per-language.svg" alt="Repos per language" />
-<img width="32.5%" src="profile-summary-card-output/blue_green/2-most-commit-language.svg" alt="Most commit language" />
+<img width="32.5%" src="profile-summary-card-output/synthwave/3-stats.svg" alt="Stats" />
+<img width="32.5%" src="profile-summary-card-output/synthwave/1-repos-per-language.svg" alt="Repos per language" />
+<img width="32.5%" src="profile-summary-card-output/synthwave/2-most-commit-language.svg" alt="Most commit language" />
 
-<img width="100%" src="https://activity-graph.vercel.app/graph?username=Choi-Jungwoo&bg_color=040f0f&color=8fe3b8&title_color=0cf574&line=0cf574&point=f5b700&area=true&area_color=0cf574&hide_border=true&radius=0" alt="Contribution activity graph" />
+<img width="100%" src="https://activity-graph.vercel.app/graph?username=Choi-Jungwoo&bg_color=150a17&color=f2d8c9&title_color=e55273&line=e55273&point=f2e79c&area=true&area_color=c03773&hide_border=true&radius=0" alt="Contribution activity graph" />
 
 </div>
 
@@ -60,7 +60,7 @@
 
 <br /><br />
 
-<img src="https://komarev.com/ghpvc/?username=Choi-Jungwoo&style=flat-square&color=0a8f4a&label=PROFILE+VIEWS" alt="Profile views" />
+<img src="https://komarev.com/ghpvc/?username=Choi-Jungwoo&style=flat-square&color=c03773&label=PROFILE+VIEWS" alt="Profile views" />
 
 <picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/footer-narrow.svg" /><img width="100%" src="assets/pixel/footer.svg" alt="It's now safe to close this tab." /></picture>
 

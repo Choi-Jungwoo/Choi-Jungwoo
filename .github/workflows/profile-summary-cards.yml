@@ -27,5 +27,5 @@ jobs:
         with:
           USERNAME: ${{ github.repository_owner }}
           BRANCH_NAME: main
-          THEME: blue_green
+          THEME: synthwave
           ANIMATION: stagger

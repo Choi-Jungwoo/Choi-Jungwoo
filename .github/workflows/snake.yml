@@ -22,7 +22,7 @@ jobs:
           github_user_name: Choi-Jungwoo
           outputs: |
             dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark&color_snake=#f5b700&color_dots=#0b1f1a,#0a4a33,#0a8f4a,#0bc15a,#0cf574
+            dist/github-snake-dark.svg?palette=github-dark&color_snake=#f2e79c&color_dots=#1e1020,#4d1d4b,#8c2f68,#d95271,#eaad73
 
       - name: Push snake SVGs to output branch
         uses: crazy-max/ghaction-github-pages@v3
