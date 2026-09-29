@@ -1,85 +1,54 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7AA2F7,100:BB9AF7&height=220&section=header&text=JungWoo%20Choi&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=%F0%9F%8E%AC%20VFX%20Pipeline%20TD%20%C2%B7%20%F0%9F%93%88%20Quant%20Trading%20%C2%B7%20%F0%9F%A6%80%20Rust%20Craftsman%20%C2%B7%20%F0%9F%8E%AE%20Game%20Dev%20%C2%B7%20%F0%9F%94%90%20Security%20Research&descAlignY=60&descSize=18&descColor=e0e6ff" />
-
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=640&lines=Pipeline+TD+%F0%9F%8E%AC;Building+quant+trading+systems+%F0%9F%93%88;Rust+%C2%B7+C%23+%C2%B7+Go+%C2%B7+TypeScript+%C2%B7+Python;From+Maya+plugins+to+market+arbitrage;Unreal+%C2%B7+Unity+%C2%B7+Minecraft+modding" alt="Typing SVG" /></a>
+<picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/header-narrow.svg" /><img width="100%" src="assets/pixel/header.svg" alt="CJW Modular BIOS boot screen — Choi Jungwoo: VFX pipeline TD & tooling, Rust × Autodesk Maya toolchain, multi-market quant & arbitrage infra, crypto & prediction-market integrations, security & reverse engineering, game dev on Unreal / Unity / Minecraft" /></picture>
 
 </div>
 
-## 👨‍💻 About Me
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-about-narrow.svg" /><img width="100%" src="assets/pixel/section-about.svg" alt="About Me" /></picture></h3>
 
-- 🎬 **Ex-NetEase Pipeline TD** — built VFX pipeline tooling & the **Rust × Autodesk Maya** ecosystem (bindgen, plugins, runtimes)
-- 📈 **Quant systems engineer** — building multi-market trading & arbitrage infrastructure
-- 🦀 Polyglot engineer: **Rust · C#/.NET · Go · TypeScript · Python · C++**, from systems programming to full-stack products
-- ⛓️ **Blockchain & fintech** — crypto exchange & prediction-market integrations, delta-neutral / statistical arbitrage, MT5 & CTP connectivity
-- 🔐 **Security & reverse engineering** — antivirus tooling, native DLL interop, firmware tinkering
-- 🎮 **Game dev** — Unreal Engine source licensee, Unity multiplayer games, Minecraft server ecosystems
+- <img width="24" height="24" align="top" src="assets/pixel/icon-clapper.svg" alt="" /> **Ex-NetEase Pipeline TD** — built VFX pipeline tooling & the **Rust × Autodesk Maya** ecosystem (bindgen, plugins, runtimes)
+- <img width="24" height="24" align="top" src="assets/pixel/icon-candles.svg" alt="" /> **Quant systems engineer** — building multi-market trading & arbitrage infrastructure
+- <img width="24" height="24" align="top" src="assets/pixel/icon-crab.svg" alt="" /> Polyglot engineer: **Rust · C#/.NET · Go · TypeScript · Python · C++**, from systems programming to full-stack products
+- <img width="24" height="24" align="top" src="assets/pixel/icon-chain.svg" alt="" /> **Blockchain & fintech** — crypto exchange & prediction-market integrations, delta-neutral / statistical arbitrage, MT5 & CTP connectivity
+- <img width="24" height="24" align="top" src="assets/pixel/icon-lock.svg" alt="" /> **Security & reverse engineering** — antivirus tooling, native DLL interop, firmware tinkering
+- <img width="24" height="24" align="top" src="assets/pixel/icon-gamepad.svg" alt="" /> **Game dev** — Unreal Engine source licensee, Unity multiplayer games, Minecraft server ecosystems
 
-## 🛠️ Tech Stack
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-stack-narrow.svg" /><img width="100%" src="assets/pixel/section-stack.svg" alt="Tech Stack" /></picture></h3>
 
-<div align="center">
+<picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/stack-narrow.svg" /><img width="100%" src="assets/pixel/stack.svg" alt="Languages: Rust, C#, Go, TypeScript, Python, C++, CMake. Frameworks: .NET, Next.js, React, Node.js. Engines: Unreal Engine, Unity. Infra: Redis, Docker, Linux, GitHub Actions. Toolchain: Git, Neovim, Bash, Arduino." /></picture>
 
-**Languages**
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-exchanges-narrow.svg" /><img width="100%" src="assets/pixel/section-exchanges.svg" alt="Crypto Exchanges" /></picture></h3>
 
-[![Languages](https://skillicons.dev/icons?i=rust,cs,go,ts,py,cpp,cmake&theme=dark)](https://skillicons.dev)
+<picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/exchanges-narrow.svg" /><img width="100%" src="assets/pixel/exchanges.svg" alt="Building low-latency trading & arbitrage infrastructure across Coinbase, Binance, Kraken, OKX, Bitget, Gate.io, Bybit, KuCoin, Upbit and HTX" /></picture>
 
-**Frameworks & Engines**
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-projects-narrow.svg" /><img width="100%" src="assets/pixel/section-projects.svg" alt="Featured Projects" /></picture></h3>
 
-[![Frameworks](https://skillicons.dev/icons?i=dotnet,nextjs,react,unity,unrealengine,nodejs&theme=dark)](https://skillicons.dev)
-
-**Infrastructure & Tools**
-
-[![Tools](https://skillicons.dev/icons?i=redis,docker,linux,git,githubactions,arduino,neovim,bash&theme=dark)](https://skillicons.dev)
-
-</div>
-
-## 💱 Crypto Exchanges
-
-<div align="center">
-
-*Building low-latency trading & arbitrage infrastructure across major exchanges*
-
-<a href="https://www.coinbase.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/coinbase.png" alt="Coinbase" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.binance.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/binance.jpg" alt="Binance" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.kraken.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/kraken.jpg" alt="Kraken" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.okx.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/okx.png" alt="OKX" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.bitget.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/bitget.jpg" alt="Bitget" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.gate.io"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/gate.png" alt="Gate.io" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.bybit.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/bybit.png" alt="Bybit" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.kucoin.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/kucoin.png" alt="KuCoin" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.upbit.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/upbit.png" alt="Upbit" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.htx.com"><img height="48" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/exchanges/htx.png" alt="HTX" /></a>
-
-</div>
-
-## 🚀 Featured Projects
-
-> 🔒 Most of my production work lives in private repositories — quant trading infrastructure, game servers & internal tooling.
+> <img width="24" height="24" align="top" src="assets/pixel/icon-lock.svg" alt="" /> Most of my production work lives in private repositories — quant trading infrastructure, game servers & internal tooling.
 
 | Project | Description |
 | :--- | :--- |
-| 🎬 [**MayaX**](https://github.com/Choi-Jungwoo/MayaX) | Example runtime for Autodesk Maya — write Maya extensions in Rust |
-| 🔗 [**maya-sys**](https://github.com/Choi-Jungwoo/maya-sys) | Maya C++ API bindgen — the foundation of the Rust × Maya ecosystem |
-| 🧊 [**maya-poly-noise-rs**](https://github.com/Choi-Jungwoo/maya-poly-noise-rs) | Using Rust in Maya — procedural poly noise plugin example |
-| 🧩 [**maya-rust-noise-plugin**](https://github.com/Choi-Jungwoo/maya-rust-noise-plugin) | Rust + C++ hybrid implementation of a Maya plugin |
-| ⬇️ [**demon**](https://github.com/Choi-Jungwoo/demon) | Multi-threaded download tool implemented in Rust |
-| 🔥 [**fire-sensor-example**](https://github.com/Choi-Jungwoo/fire-sensor-example) | Embedded Rust — fire sensor example for NodeMCU |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-clapper.svg" alt="" /> [**MayaX**](https://github.com/Choi-Jungwoo/MayaX) | Example runtime for Autodesk Maya — write Maya extensions in Rust |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-chain.svg" alt="" /> [**maya-sys**](https://github.com/Choi-Jungwoo/maya-sys) | Maya C++ API bindgen — the foundation of the Rust × Maya ecosystem |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-cube.svg" alt="" /> [**maya-poly-noise-rs**](https://github.com/Choi-Jungwoo/maya-poly-noise-rs) | Using Rust in Maya — procedural poly noise plugin example |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-puzzle.svg" alt="" /> [**maya-rust-noise-plugin**](https://github.com/Choi-Jungwoo/maya-rust-noise-plugin) | Rust + C++ hybrid implementation of a Maya plugin |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-download.svg" alt="" /> [**demon**](https://github.com/Choi-Jungwoo/demon) | Multi-threaded download tool implemented in Rust |
+| <img width="24" height="24" align="top" src="assets/pixel/icon-flame.svg" alt="" /> [**fire-sensor-example**](https://github.com/Choi-Jungwoo/fire-sensor-example) | Embedded Rust — fire sensor example for NodeMCU |
 
-## 📊 GitHub Stats
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-stats-narrow.svg" /><img width="100%" src="assets/pixel/section-stats.svg" alt="GitHub Stats" /></picture></h3>
 
 <div align="center">
 
-<img width="100%" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/profile-summary-card-output/tokyonight/0-profile-details.svg" />
+<img width="100%" src="profile-summary-card-output/blue_green/0-profile-details.svg" alt="Profile details" />
 
-<img width="32.5%" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/profile-summary-card-output/tokyonight/3-stats.svg" />
-<img width="32.5%" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/profile-summary-card-output/tokyonight/1-repos-per-language.svg" />
-<img width="32.5%" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/profile-summary-card-output/tokyonight/2-most-commit-language.svg" />
+<img width="32.5%" src="profile-summary-card-output/blue_green/3-stats.svg" alt="Stats" />
+<img width="32.5%" src="profile-summary-card-output/blue_green/1-repos-per-language.svg" alt="Repos per language" />
+<img width="32.5%" src="profile-summary-card-output/blue_green/2-most-commit-language.svg" alt="Most commit language" />
 
-<img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=Choi-Jungwoo&theme=tokyo-night&hide_border=true&area=true" />
+<img width="100%" src="https://activity-graph.vercel.app/graph?username=Choi-Jungwoo&bg_color=040f0f&color=8fe3b8&title_color=0cf574&line=0cf574&point=f5b700&area=true&area_color=0cf574&hide_border=true&radius=0" alt="Contribution activity graph" />
 
 </div>
 
-## 🐍 Contribution Snake
+<h3><picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/section-snake-narrow.svg" /><img width="100%" src="assets/pixel/section-snake.svg" alt="Contribution Snake" /></picture></h3>
 
 <div align="center">
 
@@ -89,12 +58,10 @@
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/output/github-snake.svg" />
 </picture>
 
-</div>
+<br /><br />
 
-<div align="center">
+<img src="https://komarev.com/ghpvc/?username=Choi-Jungwoo&style=flat-square&color=0a8f4a&label=PROFILE+VIEWS" alt="Profile views" />
 
-![Profile Views](https://komarev.com/ghpvc/?username=Choi-Jungwoo&color=7aa2f7&style=for-the-badge&label=PROFILE+VIEWS)
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:BB9AF7,100:7AA2F7&height=130&section=footer" />
+<picture><source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/Choi-Jungwoo/Choi-Jungwoo/main/assets/pixel/footer-narrow.svg" /><img width="100%" src="assets/pixel/footer.svg" alt="It's now safe to close this tab." /></picture>
 
 </div>
